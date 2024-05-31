@@ -25,7 +25,7 @@ float cameraPosX = 0;
 float screenX = 1500;
 float screenY = 1000;
 
-float asteroidSpeed = -5.0f;
+float asteroidSpeed = 0.0f;
 
 int points;
 
@@ -34,7 +34,8 @@ clock_t speedChangeEnd;
 clock_t addPointsStart;
 clock_t addPointsEnd;
 
-bool isGameLost = false;
+bool isGameLost = true;
+bool isFirstGame = true;
 
 ShaderProgram* sp;
 ShaderProgram* sp_simple;
@@ -80,6 +81,33 @@ std::string scoreToText(int score)
 	return "SCORE: " + std::to_string(score);
 }
 
+void restartGame()
+{
+	asteroidsList = {};
+	for (int i = 0; i < 10; i++)
+	{
+		AsteroidProps tmp = {};
+		tmp.posX = (float)(rand() % 100 - 50) / 10;
+		tmp.posZ = 20.0f - i * 2;
+		tmp.scale = (float)(rand() % 201 + 100) / 100;
+		tmp.xAxis = (float)(rand() % 11) / 10;
+		tmp.yAxis = (float)(rand() % 11) / 10;
+		tmp.zAxis = (float)(rand() % 11) / 10;
+		tmp.rotateSpeed = PI / ((float)(rand() % 31 + 10) / 10);
+		tmp.rotateAngle = 0;
+		asteroidsList.push_back(tmp);
+	}
+	asteroidSpeed = -5.0f;
+
+	cameraPosX = 0.0;
+	cameraSpeed = 0;
+	speedChangeStart = clock();
+	addPointsStart = clock();
+	isGameLost = false;
+	points = 0;
+	isFirstGame = false;
+}
+
 
 void error_callback(int error, const char* description) {
 	fputs(description, stderr);
@@ -96,9 +124,11 @@ void windowResizeCallback(GLFWwindow* window, int width, int height) {
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (action == GLFW_PRESS) {
 		if (key == GLFW_KEY_LEFT && !isGameLost)
-			cameraSpeed = -3.0f;
+			cameraSpeed = -4.0f;
 		if (key == GLFW_KEY_RIGHT && !isGameLost)
-			cameraSpeed = 3.0f;
+			cameraSpeed = 4.0f;
+		if (key == GLFW_KEY_SPACE && isGameLost)
+			restartGame();
 	}
 	if (action == GLFW_RELEASE) {
 		if (key == GLFW_KEY_LEFT)
@@ -126,20 +156,6 @@ void initOpenGLProgram(GLFWwindow* window) {
 	background->init();
 	fh->init();
 
-	for (int i = 0; i < 10; i++) 
-	{
-		AsteroidProps tmp = {};
-		tmp.posX = (float)(rand() % 100 - 50) / 10;
-		tmp.posZ = 20.0f - i * 2;
-		tmp.scale = (float)(rand() % 201 + 100) / 100;
-		tmp.xAxis = (float)(rand() % 11) / 10;
-		tmp.yAxis = (float)(rand() % 11) / 10;
-		tmp.zAxis = (float)(rand() % 11) / 10;
-		tmp.rotateSpeed = PI / ((float)(rand() % 31 + 10) / 10);
-		tmp.rotateAngle = 0;
-		asteroidsList.push_back(tmp);
-	}
-
 	texUFO = readTexture("textures\\spaceship_texture.png");
 	texAsteroid = readTexture("textures\\asteroid_texture.png");
 	texBackground = readTexture("textures\\background.png");
@@ -149,7 +165,19 @@ void drawScene(GLFWwindow* window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	fh->render(sp_text, scoreToText(points), 10, screenY - 50, screenX, screenY);
+	if (isGameLost && isFirstGame) 
+	{
+		fh->render(sp_text, "Press SPACE to start", screenX / 2 - 250, screenY / 2 + 50, screenX, screenY, 1.0);
+	}
+	else if (isGameLost)
+	{
+		fh->render(sp_text, scoreToText(points), screenX / 2 - scoreToText(points).size() * 12, screenY / 2 + 90, screenX, screenY, 1.0);
+		fh->render(sp_text, "Press SPACE to restart", screenX / 2 - 220, screenY / 2, screenX, screenY, 0.75);
+	}
+	else 
+	{
+		fh->render(sp_text, scoreToText(points), 10, screenY - 50, screenX, screenY, 1.0);
+	}
 
 	SceneHelper::drawUFO(ufo_model, sp, aspectRatio, cameraPosX, texUFO);
 
@@ -204,9 +232,9 @@ void handleTime()
 	if (!isGameLost) 
 	{
 		speedChangeEnd = clock();
-		if ((double)(speedChangeEnd - speedChangeStart) >= 3000) 
+		if ((double)(speedChangeEnd - speedChangeStart) >= 800) 
 		{
-			asteroidSpeed -= 0.5;
+			asteroidSpeed -= 0.1;
 			speedChangeStart = clock();
 		}
 

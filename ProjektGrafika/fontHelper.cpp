@@ -79,7 +79,7 @@ void FontHelper::dispose()
     FT_Done_FreeType(ft);
 }
 
-void FontHelper::render(ShaderProgram* sp, std::string text, float posX, float posY, float screenX, float screenY)
+void FontHelper::render(ShaderProgram* sp, std::string text, float posX, float posY, float screenX, float screenY, float scale)
 {
     float PI = 3.141592653589793f;
     glm::mat4 projection = glm::ortho(0.0f, screenX, 0.0f, screenY);
@@ -95,11 +95,11 @@ void FontHelper::render(ShaderProgram* sp, std::string text, float posX, float p
     {
         Character ch = Characters[*c];
 
-        float xpos = posX + ch.bearingX;
-        float ypos = posY - (ch.height - ch.bearingY);
+        float xpos = posX + ch.bearingX * scale;
+        float ypos = posY - (ch.height - ch.bearingY) * scale;
 
-        float w = ch.width;
-        float h = ch.height;
+        float w = ch.width * scale;
+        float h = ch.height * scale;
 
         float vertices[6][4] = {
             { xpos,     ypos + h,   0.0f, 0.0f },
@@ -120,7 +120,7 @@ void FontHelper::render(ShaderProgram* sp, std::string text, float posX, float p
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        posX += (ch.advance >> 6);
+        posX += (ch.advance >> 6) * scale;
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);

@@ -13,6 +13,6 @@ class FontHelper
 public:
 	bool init();
 	void dispose();
-	void render(ShaderProgram* sp, std::string text, float posX, float posY, float screenX, float screenY);
+	void render(ShaderProgram* sp, std::string text, float posX, float posY, float screenX, float screenY, float scale);
 };
 
