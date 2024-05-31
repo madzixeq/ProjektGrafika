@@ -13,6 +13,8 @@
 #include "asteroidProps.h"
 #include <vector>
 #include "lodepng.h"
+#include <ft2build.h>
+#include "fontHelper.h"
 
 const float PI = 3.141592653589793f;
 float aspectRatio = 1;
@@ -20,20 +22,28 @@ float aspectRatio = 1;
 float cameraSpeed = 0;
 float cameraPosX = 0;
 
+float screenX = 1500;
+float screenY = 1000;
+
 float asteroidSpeed = -5.0f;
 
 bool isGameLost = false;
 
 ShaderProgram* sp;
 ShaderProgram* sp_simple;
+ShaderProgram* sp_text;
+
 UFO* ufo_model = new UFO();
 Asteroid* asteroid_model = new Asteroid();
 Cube* background = new Cube();
+
 std::vector<AsteroidProps> asteroidsList;
 
 GLuint texUFO;
 GLuint texAsteroid;
 GLuint texBackground;
+
+FontHelper* fh = new FontHelper();
 
 GLuint readTexture(const char* filename) {
 	GLuint tex;
@@ -58,6 +68,11 @@ GLuint readTexture(const char* filename) {
 	return tex;
 }
 
+std::string scoreToText(int score)
+{
+	return "SCORE: " + std::to_string(score);
+}
+
 
 void error_callback(int error, const char* description) {
 	fputs(description, stderr);
@@ -66,6 +81,8 @@ void error_callback(int error, const char* description) {
 void windowResizeCallback(GLFWwindow* window, int width, int height) {
 	if (height == 0) return;
 	aspectRatio = (float)width / (float)height;
+	screenX = width;
+	screenY = height;
 	glViewport(0, 0, width, height);
 }
 
@@ -90,12 +107,17 @@ void initOpenGLProgram(GLFWwindow* window) {
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 	glfwSetKeyCallback(window, keyCallback);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	sp = new ShaderProgram("v_shader.glsl", NULL, "f_shader.glsl");
 	sp_simple = new ShaderProgram("v_simple_shader.glsl", NULL, "f_simple_shader.glsl");
+	sp_text = new ShaderProgram("v_text_shader.glsl", NULL, "f_text_shader.glsl");
 
 	ufo_model->init();
 	asteroid_model->init();
 	background->init();
+	fh->init();
 
 	for (int i = 0; i < 10; i++) 
 	{
@@ -120,6 +142,7 @@ void drawScene(GLFWwindow* window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	fh->render(sp_text, scoreToText(0), 10, screenY - 50, screenX, screenY);
 
 	SceneHelper::drawUFO(ufo_model, sp, aspectRatio, cameraPosX, texUFO);
 
@@ -182,9 +205,8 @@ int main(int argc, char* argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	float width = 1500, height = 1000;
-	window = glfwCreateWindow(width, height, "OpenGL", NULL, NULL);
-	aspectRatio = (float)width / (float)height;
+	window = glfwCreateWindow(screenX, screenY, "OpenGL", NULL, NULL);
+	aspectRatio = (float)screenX / (float)screenY;
 	if (!window)
 	{
 		fprintf(stderr, "Nie mo¿na utworzyæ okna.\n");

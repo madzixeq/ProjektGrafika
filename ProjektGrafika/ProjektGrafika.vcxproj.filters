@@ -39,6 +39,9 @@
     <ClCompile Include="cube.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="fontHelper.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderProgram.h">
@@ -65,6 +68,12 @@
     <ClInclude Include="cube.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="fontHelper.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="f_shader.glsl">
@@ -78,6 +87,12 @@
       <Filter>Pliki zasobów</Filter>
     </None>
     <None Include="v_simple_shader.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="f_text_shader.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="v_text_shader.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
   </ItemGroup>
