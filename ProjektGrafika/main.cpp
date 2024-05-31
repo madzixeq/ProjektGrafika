@@ -84,11 +84,11 @@ std::string scoreToText(int score)
 void restartGame()
 {
 	asteroidsList = {};
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		AsteroidProps tmp = {};
 		tmp.posX = (float)(rand() % 100 - 50) / 10;
-		tmp.posZ = 30.0f - i * 2;
+		tmp.posZ = 50.0f - i * 2;
 		tmp.scale = (float)(rand() % 201 + 100) / 100;
 		tmp.xAxis = (float)(rand() % 11) / 10;
 		tmp.yAxis = (float)(rand() % 11) / 10;
@@ -124,9 +124,9 @@ void windowResizeCallback(GLFWwindow* window, int width, int height) {
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (action == GLFW_PRESS) {
 		if (key == GLFW_KEY_LEFT && !isGameLost)
-			cameraSpeed = -4.0f;
+			cameraSpeed = -4.5f;
 		if (key == GLFW_KEY_RIGHT && !isGameLost)
-			cameraSpeed = 4.0f;
+			cameraSpeed = 4.5f;
 		if (key == GLFW_KEY_SPACE && isGameLost)
 			restartGame();
 	}
@@ -197,7 +197,7 @@ void handleAsteroids()
 		asteroidsList[i].posZ += asteroidSpeed * glfwGetTime();
 		asteroidsList[i].rotateAngle += asteroidsList[i].rotateSpeed * glfwGetTime();
 		if (asteroidsList[i].posZ <= -4) {
-			asteroidsList[i].posZ = 20.0f;
+			asteroidsList[i].posZ = 40.0f;
 			asteroidsList[i].posX = (float)(rand() % 100 - 50) / 10;
 			asteroidsList[i].scale = (float)(rand() % 101 + 100) / 100;
 			asteroidsList[i].xAxis = (float)(rand() % 11) / 10;
