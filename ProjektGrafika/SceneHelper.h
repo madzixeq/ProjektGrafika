@@ -11,7 +11,7 @@
 class SceneHelper
 {
 public:
-	static void drawUFO(UFO* model, ShaderProgram* sp, float aspectRatio, float cameraPosX, GLuint tex);
+	static void drawUFO(UFO* model, ShaderProgram* sp, float aspectRatio, float cameraPosX, float cameraSpeed, GLuint tex);
 	static void drawAsteroid(Asteroid* model, ShaderProgram* sp, float aspectRatio, float cameraPosX, AsteroidProps props, GLuint tex);
 	static void drawBackground(Cube* model, ShaderProgram* sp, float cameraPosX, GLuint tex);
 };

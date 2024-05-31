@@ -1,9 +1,15 @@
 #include "SceneHelper.h"
 #include <glfw3.h>
 
-void SceneHelper::drawUFO(UFO* model, ShaderProgram* sp, float aspectRatio, float cameraPosX, GLuint tex)
+void SceneHelper::drawUFO(UFO* model, ShaderProgram* sp, float aspectRatio, float cameraPosX, float cameraSpeed, GLuint tex)
 {
 	float PI = 3.141592653589793f;
+	float rotateAngle = 0;
+
+	if (cameraSpeed > 0)
+		rotateAngle = PI / 12;
+	else if (cameraSpeed < 0)
+		rotateAngle = -PI / 12;
 
 	sp->use();
 
@@ -13,6 +19,7 @@ void SceneHelper::drawUFO(UFO* model, ShaderProgram* sp, float aspectRatio, floa
 
 	glm::mat4 M = glm::mat4(1.0f);
 	M = glm::translate(M, glm::vec3(-cameraPosX, 0.0f, -1.5f));
+	M = glm::rotate(M, rotateAngle, glm::vec3(0.0f, 0.0f, 1.0f));
 	M = glm::scale(M, glm::vec3(0.02f, 0.02f, 0.02f));
 	glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
 
@@ -45,7 +52,7 @@ void SceneHelper::drawAsteroid(Asteroid* model, ShaderProgram* sp, float aspectR
 
 	glm::mat4 M = glm::mat4(1.0f);
 	M = glm::translate(M, glm::vec3(props.posX, 0.0f, props.posZ));
-	M = glm::rotate(M, props.rotateAngle, glm::vec3(1.0f, 0.0f, 0.0f));
+	M = glm::rotate(M, props.rotateAngle, glm::vec3(props.xAxis, props.yAxis, props.zAxis));
 	M = glm::scale(M, glm::vec3(0.002f * props.scale, 0.002f * props.scale, 0.002f * props.scale));
 	glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
 

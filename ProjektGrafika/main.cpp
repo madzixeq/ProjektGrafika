@@ -179,7 +179,7 @@ void drawScene(GLFWwindow* window)
 		fh->render(sp_text, scoreToText(points), 10, screenY - 50, screenX, screenY, 1.0);
 	}
 
-	SceneHelper::drawUFO(ufo_model, sp, aspectRatio, cameraPosX, texUFO);
+	SceneHelper::drawUFO(ufo_model, sp, aspectRatio, cameraPosX, cameraSpeed, texUFO);
 
 	SceneHelper::drawBackground(background, sp_simple, cameraPosX, texBackground);
 
