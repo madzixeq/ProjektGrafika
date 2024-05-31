@@ -88,7 +88,7 @@ void restartGame()
 	{
 		AsteroidProps tmp = {};
 		tmp.posX = (float)(rand() % 100 - 50) / 10;
-		tmp.posZ = 20.0f - i * 2;
+		tmp.posZ = 30.0f - i * 2;
 		tmp.scale = (float)(rand() % 201 + 100) / 100;
 		tmp.xAxis = (float)(rand() % 11) / 10;
 		tmp.yAxis = (float)(rand() % 11) / 10;
