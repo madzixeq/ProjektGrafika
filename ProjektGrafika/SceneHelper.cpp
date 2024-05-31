@@ -84,8 +84,8 @@ void SceneHelper::drawBackground(Cube* model, ShaderProgram* sp, float cameraPos
 	glBindTexture(GL_TEXTURE_2D, tex);
 
 	glm::mat4 M = glm::mat4(1.0f);
-	M = glm::translate(M, glm::vec3(0.0f, 0.0f, 30.0f));
-	M = glm::scale(M, glm::vec3(20.0f, 20.0f, 10.0f));
+	M = glm::translate(M, glm::vec3(0.0f, 0.0f, 50.0f));
+	M = glm::scale(M, glm::vec3(30.0f, 30.0f, 10.0f));
 	glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
 
 	glm::mat4 P = glm::perspective(50.0f * PI / 180.0f, 1.0f, 1.0f, 50.0f);

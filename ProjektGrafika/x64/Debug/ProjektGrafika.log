@@ -1,12 +1,67 @@
-﻿  main.cpp
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(119,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(120,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(197,42): warning C4244: "+=": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(198,64): warning C4244: "+=": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(237,24): warning C4305: "-=": obcięcie z "double" do "float"
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(244,14): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(252,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(263,37): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(263,28): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\bloom\source\repos\ProjektGrafika\ProjektGrafika\main.cpp(293,29): warning C4244: "+=": konwersja z "double" do "float", możliwa utrata danych
+﻿  SceneHelper.cpp
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15): warning C4244: "=": konwersja z "double" do "TReal", możliwa utrata danych
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15): warning C4244:         with
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15): warning C4244:         [
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15): warning C4244:             TReal=float
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15): warning C4244:         ]
+  (kompilowanie pliku źródłowego „SceneHelper.cpp”)
+  C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(207,15):
+  kontekst tworzenia wystąpienia szablonu (najpierw najstarszy) to
+  	C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\anim.h(107,24):
+  	zobacz odwołanie do kompilowanego tworzenia wystąpienia „aiQuaterniont<float>” klasy klasa szablon
+  	C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(186,1):
+  	podczas kompilowania funkcji składowej „void aiQuaterniont<float>::Interpolate(aiQuaterniont<float> &,const aiQuaterniont<float> &,const aiQuaterniont<float> &,TReal)” klasy klasa szablon
+          with
+          [
+              TReal=float
+          ]
+  		C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\anim.h(435,28):
+  		zobacz pierwsze odwołanie do elementu „aiQuaterniont<float>::Interpolate” w „Assimp::Interpolator<aiQuaternion>::operator ()”
+  
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(208,14): warning C4244: "=": konwersja z "double" do "TReal", możliwa utrata danych
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(208,14): warning C4244:         with
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(208,14): warning C4244:         [
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(208,14): warning C4244:             TReal=float
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(208,14): warning C4244:         ]
+  (kompilowanie pliku źródłowego „SceneHelper.cpp”)
+  
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(209,61): warning C4244: "=": konwersja z "double" do "TReal", możliwa utrata danych
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(209,61): warning C4244:         with
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(209,61): warning C4244:         [
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(209,61): warning C4244:             TReal=float
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(209,61): warning C4244:         ]
+  (kompilowanie pliku źródłowego „SceneHelper.cpp”)
+  
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(210,33): warning C4244: "=": konwersja z "double" do "TReal", możliwa utrata danych
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(210,33): warning C4244:         with
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(210,33): warning C4244:         [
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(210,33): warning C4244:             TReal=float
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\quaternion.inl(210,33): warning C4244:         ]
+  (kompilowanie pliku źródłowego „SceneHelper.cpp”)
+  
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13): warning C4244: "return": konwersja z "double" do "TReal", możliwa utrata danych
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13): warning C4244:         with
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13): warning C4244:         [
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13): warning C4244:             TReal=float
+C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13): warning C4244:         ]
+  (kompilowanie pliku źródłowego „SceneHelper.cpp”)
+  C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(93,13):
+  kontekst tworzenia wystąpienia szablonu (najpierw najstarszy) to
+  	C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\types.h(150,22):
+  	zobacz odwołanie do kompilowanego tworzenia wystąpienia „aiVector3t<float>” klasy klasa szablon
+  	C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(142,91):
+  	podczas kompilowania funkcji składowej „bool aiVector3t<float>::operator ==(const aiVector3t<float> &) const” klasy klasa szablon
+  		C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\anim.h(82,3):
+  		zobacz pierwsze odwołanie do elementu „aiVector3t<float>::operator ==” w „aiVectorKey::operator ==”
+  	C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(92,57):
+  	podczas kompilowania funkcji składowej „TReal aiVector3t<TReal>::Length(void) const” klasy klasa szablon
+          with
+          [
+              TReal=float
+          ]
+  		C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\vector3.inl(98,8):
+  		zobacz pierwsze odwołanie do elementu „aiVector3t<float>::Length” w „aiVector3t<float>::Normalize”
+  		C:\Users\bloom\source\repos\ProjektGrafika\packages\Assimp.3.0.0\build\native\include\assimp\camera.h(191,50):
+  		zobacz pierwsze odwołanie do elementu „aiVector3t<float>::Normalize” w „aiCamera::GetCameraMatrix”
+  
   ProjektGrafika.vcxproj -> C:\Users\bloom\source\repos\ProjektGrafika\x64\Debug\ProjektGrafika.exe
