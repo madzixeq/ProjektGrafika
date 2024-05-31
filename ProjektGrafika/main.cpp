@@ -27,6 +27,13 @@ float screenY = 1000;
 
 float asteroidSpeed = -5.0f;
 
+int points;
+
+clock_t speedChangeStart;
+clock_t speedChangeEnd;
+clock_t addPointsStart;
+clock_t addPointsEnd;
+
 bool isGameLost = false;
 
 ShaderProgram* sp;
@@ -142,7 +149,7 @@ void drawScene(GLFWwindow* window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	fh->render(sp_text, scoreToText(0), 10, screenY - 50, screenX, screenY);
+	fh->render(sp_text, scoreToText(points), 10, screenY - 50, screenX, screenY);
 
 	SceneHelper::drawUFO(ufo_model, sp, aspectRatio, cameraPosX, texUFO);
 
@@ -192,6 +199,26 @@ void checkCollisions()
 	}
 }
 
+void handleTime() 
+{
+	if (!isGameLost) 
+	{
+		speedChangeEnd = clock();
+		if ((double)(speedChangeEnd - speedChangeStart) >= 3000) 
+		{
+			asteroidSpeed -= 0.5;
+			speedChangeStart = clock();
+		}
+
+		addPointsEnd = clock();
+		if ((double)(addPointsEnd - addPointsStart) >= 100)
+		{
+			points -= asteroidSpeed;
+			addPointsStart = clock();
+		}
+	}
+}
+
 int main(int argc, char* argv[]) 
 {
 	srand(time(0));
@@ -225,12 +252,15 @@ int main(int argc, char* argv[])
 	initOpenGLProgram(window);
 
 	glfwSetTime(0);
+	speedChangeStart = clock();
+	addPointsStart = clock();
 	while (!glfwWindowShouldClose(window))
 	{
 		drawScene(window);
 
 		handleAsteroids();
 		checkCollisions();
+		handleTime();
 
 		cameraPosX += cameraSpeed * glfwGetTime();
 		if (cameraPosX >= 5.0f)
